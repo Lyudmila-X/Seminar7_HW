@@ -28,18 +28,51 @@ namespace Seminar7
             {
                 for (int j = 0; j < array.GetLength(1); j++)
                 {
-                    Console.Write(array[i, j] + "  ");
+                    if (Convert.ToString(array[i, j]).Length == 1)
+                    {
+                        Console.Write("  " + array[i, j] + " ");
+                    }
+                    else
+                    {
+                        if (Convert.ToString(array[i, j]).Length == 2)
+                        {
+                            Console.Write(" " + array[i, j] + " ");
+                        }
+                        else
+                        {
+                            Console.Write(array[i, j] + " ");
+                        }
+                    }
+
                 }
                 Console.WriteLine();
+            }
+        }
+        public static void AvgSumColumns(int[,] array)
+        {
+            double result = 0;
+            for (int i = 0; i < array.GetLength(1); i++)
+            {
+                for (int j = 0; j < array.GetLength(0); j++)
+                {
+                    result += array[j, i];
+
+                }
+                Console.Write(Math.Round(result / array.GetLength(0), 2) + " ");
+                result = 0;
             }
         }
         public static void Main(string[] args)
         {
             int strings = new Random().Next(2, 6);
             int columns = new Random().Next(2, 6);
-            int[,] newArray = FillArray(strings, columns);
-            PrintArray(newArray);
+            int[,] newArr = FillArray(strings, columns);
+            Console.Clear();
+            PrintArray(newArr);
             Console.WriteLine();
+            AvgSumColumns(newArr);
+            Console.WriteLine();
+            Console.ReadKey();
         }
     }
 }
